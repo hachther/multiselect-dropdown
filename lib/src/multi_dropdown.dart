@@ -95,6 +95,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.singleSelect = false,
     this.itemSeparator,
     this.controller,
+    this.emptyItemsWidget,
     this.validator,
     this.itemBuilder,
     this.enabled = true,
@@ -151,6 +152,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.maxSelections = 0,
     this.selectedItemBuilder,
     this.focusNode,
+    this.emptyItemsWidget,
     this.onSelectionChange,
     this.onSearchChange,
     this.closeOnBackButton = false,
@@ -187,6 +189,8 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
 
   /// The separator between the dropdown items.
   final Widget? itemSeparator;
+
+  final Widget? emptyItemsWidget;
 
   /// The validator for the dropdown.
   final String? Function(List<DropdownItem<T>>? selectedOptions)? validator;
@@ -439,6 +443,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                       maxSelections: widget.maxSelections,
                       singleSelect: widget.singleSelect,
                       onSearchChange: _dropdownController._setSearchQuery,
+                      emptyItemsWidget: widget.emptyItemsWidget,
                     ),
                   ),
                 ),

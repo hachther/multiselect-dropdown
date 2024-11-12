@@ -13,6 +13,7 @@ class _Dropdown<T> extends StatelessWidget {
     required this.maxSelections,
     required this.items,
     required this.onItemTap,
+    required this.emptyItemsWidget,
     Key? key,
     this.onSearchChange,
     this.itemBuilder,
@@ -37,6 +38,8 @@ class _Dropdown<T> extends StatelessWidget {
 
   /// The separator between the dropdown items.
   final Widget? itemSeparator;
+
+  final Widget? emptyItemsWidget;
 
   /// The decoration of the search field.
   final SearchFieldDecoration searchDecoration;
@@ -110,14 +113,15 @@ class _Dropdown<T> extends StatelessWidget {
                 ),
               ),
               if (items.isEmpty && searchEnabled)
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Text(
-                    'No items found',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                ),
+                emptyItemsWidget ??
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text(
+                        'No items found',
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ),
               if (decoration.footer != null)
                 Flexible(child: decoration.footer!),
             ],
