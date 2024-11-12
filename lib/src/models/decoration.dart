@@ -190,6 +190,8 @@ class FieldDecoration {
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     this.backgroundColor,
     this.showClearIcon = true,
+    this.errorIcon,
+    this.errorStyle,
   });
 
   /// The label text to display above the dropdown field.
@@ -216,11 +218,17 @@ class FieldDecoration {
   /// The icon to display at the start of dropdown field.
   final Widget? prefixIcon;
 
+  /// The icon to display at the start of the error message
+  final Widget? errorIcon;
+
   /// The style of the label text.
   final TextStyle? labelStyle;
 
   /// The style of the hint text.
   final TextStyle? hintStyle;
+
+  /// The style of the error text.
+  final TextStyle? errorStyle;
 
   /// The border radius of the dropdown field.
   final double borderRadius;

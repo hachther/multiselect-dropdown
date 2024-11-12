@@ -511,6 +511,12 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
             child: fieldDecoration.prefixIcon!,
           )
         : null;
+    final errorIcon = fieldDecoration.errorIcon != null
+        ? IconTheme.merge(
+            data: IconThemeData(color: widget.enabled ? null : Colors.grey),
+            child: fieldDecoration.errorIcon!,
+          )
+        : null;
 
     return InputDecoration(
       enabled: widget.enabled,
@@ -518,7 +524,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
       labelStyle: fieldDecoration.labelStyle,
       hintText: fieldDecoration.hintText,
       hintStyle: fieldDecoration.hintStyle,
-      errorText: _formFieldKey.currentState?.errorText,
+      // errorText: _formFieldKey.currentState?.errorText,
       filled: fieldDecoration.backgroundColor != null,
       fillColor: fieldDecoration.backgroundColor,
       border: fieldDecoration.border ?? border,
@@ -529,6 +535,25 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
       errorBorder: fieldDecoration.errorBorder,
       suffixIcon: _buildSuffixIcon(),
       contentPadding: fieldDecoration.padding,
+      prefixIconConstraints: const BoxConstraints.tightFor(),
+      error: (_formFieldKey.currentState?.errorText == null)
+          ? null
+          : (errorIcon != null)
+              ? Row(
+                  children: [
+                    errorIcon,
+                    Flexible(
+                      child: Text(
+                        _formFieldKey.currentState?.errorText ?? '',
+                        style: fieldDecoration.errorStyle,
+                      ),
+                    ),
+                  ],
+                )
+              : Text(
+                  _formFieldKey.currentState?.errorText ?? '',
+                  style: fieldDecoration.errorStyle,
+                ),
     );
   }
 
