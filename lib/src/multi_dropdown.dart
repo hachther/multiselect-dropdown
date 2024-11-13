@@ -545,6 +545,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
           ? null
           : (errorIcon != null)
               ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     errorIcon,
                     Flexible(
