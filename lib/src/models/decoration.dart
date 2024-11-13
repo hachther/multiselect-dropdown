@@ -100,7 +100,7 @@ class DropdownDecoration {
   ///
   /// [elevation] is the elevation of the dropdown. The default value is 1.
   ///
-  /// [maxHeight] is the height of the dropdown. The default value is 300.
+  /// [maxHeight] is the height of the dropdown. The default value is 400.
   ///
   /// [marginTop] is the margin top of the dropdown. The default value is 0.
   ///
