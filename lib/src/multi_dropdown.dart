@@ -107,6 +107,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSelectionChange,
     this.onSearchChange,
     this.closeOnBackButton = false,
+    this.openDropDown,
     Key? key,
   })  : future = null,
         super(key: key);
@@ -156,6 +157,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSelectionChange,
     this.onSearchChange,
     this.closeOnBackButton = false,
+    this.openDropDown,
     Key? key,
   })  : items = const [],
         super(key: key);
@@ -228,6 +230,8 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
   ///
   /// Note: This option requires the app to have a router, such as MaterialApp.router, in order to work properly.
   final bool closeOnBackButton;
+
+  final VoidCallback? openDropDown;
 
   @override
   State<MultiDropdown<T>> createState() => _MultiDropdownState<T>();
@@ -699,7 +703,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
     }
 
     if (_portalController.isShowing && _dropdownController.isOpen) return;
-
+    widget.openDropDown?.call();
     _dropdownController.openDropdown();
   }
 
