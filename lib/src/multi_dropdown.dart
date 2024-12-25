@@ -84,6 +84,8 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
   /// The [closeOnBackButton] is whether to close the dropdown when the back button is pressed. The default value is false.
   /// Note: This option requires the app to have a router, such as MaterialApp.router, in order to work properly.
   ///
+  /// The [errorText] is the text to show in case of error in the field on validation.
+  ///
   ///
   const MultiDropdown({
     required this.items,
@@ -108,6 +110,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSearchChange,
     this.closeOnBackButton = false,
     this.openDropDown,
+    this.errorText,
     Key? key,
   })  : future = null,
         super(key: key);
@@ -158,6 +161,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSearchChange,
     this.closeOnBackButton = false,
     this.openDropDown,
+    this.errorText,
     Key? key,
   })  : items = const [],
         super(key: key);
@@ -232,6 +236,8 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
   final bool closeOnBackButton;
 
   final VoidCallback? openDropDown;
+
+  final String? errorText;
 
   @override
   State<MultiDropdown<T>> createState() => _MultiDropdownState<T>();
@@ -533,6 +539,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
       labelStyle: fieldDecoration.labelStyle,
       hintText: fieldDecoration.hintText,
       hintStyle: fieldDecoration.hintStyle,
+      errorText: widget.errorText,
       // errorText: _formFieldKey.currentState?.errorText,
       filled: fieldDecoration.backgroundColor != null,
       fillColor: fieldDecoration.backgroundColor,
